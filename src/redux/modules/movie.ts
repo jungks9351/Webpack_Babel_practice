@@ -4,6 +4,7 @@ import { MovieItemType } from '../../types/movieTypes';
 interface initialMovieState {
   lists: {
     popularMovieList: [] | MovieItemType[];
+    searchMovieList: [] | MovieItemType[];
     [index: string]: [] | MovieItemType[];
   };
   error: string | null;
@@ -12,6 +13,7 @@ interface initialMovieState {
 const initialState: initialMovieState = {
   lists: {
     popularMovieList: [],
+    searchMovieList: [],
   },
   error: '',
 };
@@ -33,10 +35,29 @@ const movieSlice = createSlice({
       state.lists[action.payload.list] = [];
       state.error = action.payload.err.message;
     },
+    searchMovie: (state, action) => {
+      state.lists[action.payload.list] = [];
+      state.error = null;
+    },
+    searchMovieSuccess: (state, action) => {
+      state.lists[action.payload.list] = action.payload.results;
+      state.error = null;
+    },
+    searchMovieFailed: (state, action) => {
+      state.lists[action.payload.list] = [];
+      state.error = action.payload.err.message;
+    },
   },
 });
 
-export const { initialize, fetchMovie, fetchMovieSuccess, fetchMovieFailed } =
-  movieSlice.actions;
+export const {
+  initialize,
+  fetchMovie,
+  fetchMovieSuccess,
+  fetchMovieFailed,
+  searchMovie,
+  searchMovieSuccess,
+  searchMovieFailed,
+} = movieSlice.actions;
 
 export default movieSlice.reducer;

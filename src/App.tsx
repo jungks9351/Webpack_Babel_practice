@@ -1,14 +1,17 @@
-import styled from 'styled-components';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import GlobalStyles from './styles/GlobalStyles';
 
-import MovieContainer from './components/movie/MovieContainer';
+import MoviePage from './pages/MoviePage';
 
 const App = () => {
   return (
-    <>
+    <BrowserRouter>
       <GlobalStyles />
-      <MovieContainer />
-    </>
+      <Routes>
+        <Route path='/' element={<MoviePage />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

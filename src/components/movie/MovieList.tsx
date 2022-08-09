@@ -1,23 +1,35 @@
 import { ReactNode, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { fetchMovie } from '../../redux/modules/movie';
+import { fetchMovie, initialize } from '../../redux/modules/movie';
 import MovieItem from './MovieItem';
+import SearchBar from './SearchBar';
 
 const MovieList = () => {
   const dispatch = useAppDispatch();
-  const { popularMovieList } = useAppSelector(({ movie }) => movie.lists);
+  const { popularMovieList, searchMovieList } = useAppSelector(
+    ({ movie }) => movie.lists
+  );
 
   useEffect(() => {
-    dispatch(fetchMovie({ list: 'popularMovieList', param: '/popular' }));
+    dispatch(fetchMovie({ list: 'popularMovieList', param: '/movie/popular' }));
   }, []);
 
   return (
-    <MovieListWrapper>
-      {popularMovieList.map(popularMovieData => (
-        <MovieItem key={popularMovieData.id} popularMovieData={popularMovieData} />
-      ))}
-    </MovieListWrapper>
+    <>
+      <MovieListWrapper>
+        {popularMovieList.map(popularMovieData => (
+          <MovieItem key={popularMovieData.id} popularMovieData={popularMovieData} />
+        ))}
+      </MovieListWrapper>
+      <SearchBar />
+      <MovieListWrapper>
+        {searchMovieList.map(popularMovieData => (
+          <MovieItem key={popularMovieData.id} popularMovieData={popularMovieData} />
+        ))}
+      </MovieListWrapper>
+    </>
   );
 };
 
