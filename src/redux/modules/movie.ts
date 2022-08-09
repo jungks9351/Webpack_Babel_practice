@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { MovieItem } from '../../types/movie';
+import { MovieItemType } from '../../types/movieTypes';
 
 interface initialMovieState {
   lists: {
-    popularMovieList: [] | MovieItem[];
-    [index: string]: [] | MovieItem[];
+    popularMovieList: [] | MovieItemType[];
+    [index: string]: [] | MovieItemType[];
   };
   error: string | null;
 }
@@ -26,13 +26,10 @@ const movieSlice = createSlice({
       state.error = null;
     },
     fetchMovieSuccess: (state, action) => {
-      console.log(action.payload.list);
-
       state.lists[action.payload.list] = action.payload.results;
       state.error = null;
     },
     fetchMovieFailed: (state, action) => {
-      console.log(action.payload.list, action.payload.error);
       state.lists[action.payload.list] = [];
       state.error = action.payload.err.message;
     },

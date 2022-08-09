@@ -1,4 +1,4 @@
-export interface MovieItem {
+export interface MovieItemType {
   id: number;
   title: string;
   poster_path: string;
