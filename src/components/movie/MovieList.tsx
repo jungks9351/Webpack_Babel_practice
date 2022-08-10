@@ -47,7 +47,7 @@ const MovieListWrapper = styled.ul`
   flex-wrap: wrap;
 
   @media screen and (min-width: 376px) {
-    gap: 8px;
+    gap: 10px;
   }
 `;
 

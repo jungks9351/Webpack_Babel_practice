@@ -43,10 +43,10 @@ const MovieItemWrapper = styled.li`
   box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 0.1);
 
   @media screen and (min-width: 376px) {
-    width: calc(50% - 8px);
+    width: calc(50% - 10px);
   }
   @media screen and (min-width: 769px) {
-    width: calc(25% - 8px);
+    width: calc(25% - 10px);
   }
 `;
 
@@ -79,8 +79,8 @@ const MovieRelaseDate = styled.p`
 
 const MovieRank = styled.div`
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: -20px;
+  left: -8px;
 
   display: flex;
   justify-content: center;
