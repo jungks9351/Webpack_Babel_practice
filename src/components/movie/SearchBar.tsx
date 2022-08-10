@@ -20,14 +20,18 @@ const SearchBar = () => {
 
   return (
     <SearchBarWrapper onSubmit={handleSubmitSearchForm}>
-      <SearchInput type='text' onChange={handleChnageSearch} />
+      <SearchInput
+        type='text'
+        placeholder='영화 제목을 검색해 보세요'
+        onChange={handleChnageSearch}
+      />
       <Button type='submit'>검색</Button>
     </SearchBarWrapper>
   );
 };
 
 const SearchBarWrapper = styled.form`
-  padding: 20px 0;
+  padding: 20px;
 
   display: flex;
 `;
@@ -43,7 +47,7 @@ const SearchInput = styled.input`
 `;
 
 const Button = styled.button`
-  background-color: #ace;
+  background-color: #000000;
   border-radius: 5px;
   border: none;
   width: 50px;

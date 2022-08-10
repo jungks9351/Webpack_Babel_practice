@@ -1,10 +1,9 @@
-import { ReactNode, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+
 import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { fetchMovie, initialize } from '../../redux/modules/movie';
+import { fetchMovie } from '../../redux/modules/movie';
 import MovieItem from './MovieItem';
-import SearchBar from './SearchBar';
 
 const MovieList = () => {
   const dispatch = useAppDispatch();
@@ -16,8 +15,20 @@ const MovieList = () => {
     dispatch(fetchMovie({ list: 'popularMovieList', param: '/movie/popular' }));
   }, []);
 
+  console.log(searchMovieList === []);
+
   return (
     <>
+      {searchMovieList !== [] && (
+        <MovieListWrapper>
+          {searchMovieList.map(popularMovieData => (
+            <MovieItem
+              key={popularMovieData.id}
+              popularMovieData={popularMovieData}
+            />
+          ))}
+        </MovieListWrapper>
+      )}
       <MovieListTitle>인기 영화 TOP20</MovieListTitle>
       <MovieListWrapper>
         {popularMovieList.map((popularMovieData, i) => (
@@ -28,16 +39,6 @@ const MovieList = () => {
           />
         ))}
       </MovieListWrapper>
-      <SearchBar />
-      <MovieListWrapper>
-        {searchMovieList &&
-          searchMovieList.map(popularMovieData => (
-            <MovieItem
-              key={popularMovieData.id}
-              popularMovieData={popularMovieData}
-            />
-          ))}
-      </MovieListWrapper>
     </>
   );
 };
@@ -45,6 +46,7 @@ const MovieList = () => {
 const MovieListWrapper = styled.ul`
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 30px;
 
   @media screen and (min-width: 376px) {
     gap: 10px;
