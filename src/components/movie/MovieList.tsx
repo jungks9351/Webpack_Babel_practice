@@ -18,16 +18,25 @@ const MovieList = () => {
 
   return (
     <>
+      <MovieListTitle>인기 영화 TOP20</MovieListTitle>
       <MovieListWrapper>
-        {popularMovieList.map(popularMovieData => (
-          <MovieItem key={popularMovieData.id} popularMovieData={popularMovieData} />
+        {popularMovieList.map((popularMovieData, i) => (
+          <MovieItem
+            key={popularMovieData.id}
+            popularMovieData={popularMovieData}
+            rank={i + 1}
+          />
         ))}
       </MovieListWrapper>
       <SearchBar />
       <MovieListWrapper>
-        {searchMovieList.map(popularMovieData => (
-          <MovieItem key={popularMovieData.id} popularMovieData={popularMovieData} />
-        ))}
+        {searchMovieList &&
+          searchMovieList.map(popularMovieData => (
+            <MovieItem
+              key={popularMovieData.id}
+              popularMovieData={popularMovieData}
+            />
+          ))}
       </MovieListWrapper>
     </>
   );
@@ -35,6 +44,15 @@ const MovieList = () => {
 
 const MovieListWrapper = styled.ul`
   display: flex;
-  gap: 8px;
+  flex-wrap: wrap;
+
+  @media screen and (min-width: 376px) {
+    gap: 8px;
+  }
+`;
+
+const MovieListTitle = styled.h3`
+  font-size: 22px;
+  font-weight: 600;
 `;
 export default MovieList;

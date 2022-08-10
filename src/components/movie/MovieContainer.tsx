@@ -10,8 +10,8 @@ const MovieContainer = () => {
 };
 
 const MovieContainerWrapper = styled.div`
+  width: 100%;
   padding: 20px;
-  overflow-x: scroll;
   font-family: 'Source Sans Pro', Arial, sans-serif;
 `;
 
